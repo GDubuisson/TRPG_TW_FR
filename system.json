@@ -2,7 +2,7 @@
   "id": "TRPG_TW_FR",
   "title": "The Witcher - FR",
   "description": "A human-readable description of your system.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "compatibility": {
     "minimum": 12,
     "verified": 12
@@ -15,14 +15,30 @@
   ],
   "packs": [
     {
-      "name": "monsters",
-      "label": "My Monsters",
+      "name": "personnages",
+      "label": "Personnages",
       "type": "Actor"
     },
     {
-      "name": "items",
-      "label": "My Items",
+      "name": "monstres",
+      "label": "Monstres",
+      "type": "Actor"
+    },
+    {
+      "name": "objets",
+      "label": "Objets",
       "type": "Item"
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "TWFR",
+      "sorting": "m",
+      "packs": [
+        "personnages",
+        "objets",
+        "monstres"
+      ]
     }
   ],
   "languages": [
