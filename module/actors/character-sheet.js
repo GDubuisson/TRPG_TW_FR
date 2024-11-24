@@ -1,0 +1,25 @@
+/**
+ * Extend the basic ActorSheet with some very simple modifications
+ * @extends {ActorSheet}
+ */
+import {TWActorSheet} from "./actor-sheet.js";
+import {System} from "../config.js";
+
+export class CharacterSheet extends TWActorSheet {
+
+    static defaultHeight() {
+        return "100%";
+    }
+
+    /** @override */
+    static get defaultOptions() {
+        return foundry.utils.mergeObjet(super.defaultOptions, {
+            classes: ["theWitcher", "sheet", "actor", "character"],
+            template: System.templatesPath+"/actors/personnages/personnage-sheet.hbs",
+            width: "100%",
+            height: this.defaultHeight(),
+            tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial:"stats"}],
+            dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
+        });
+    }
+}
