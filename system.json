@@ -1,36 +1,47 @@
 {
-  "id": "mysystem",
-  "title": "Minimal World Building",
+  "id": "TRPG_TW_FR",
+  "title": "The Witcher - FR",
   "description": "A human-readable description of your system.",
   "version": "1.0.0",
   "compatibility": {
     "minimum": 12,
     "verified": 12
   },
-  "esmodules": ["TRPG_TW_FR.mjs"],
-  "styles": ["styles/system-styles.css"],
-  "packs": [{
-    "name": "monsters",
-    "label": "My Monsters",
-    "type": "Actor" /*Actor, Item, JournalEntry, RollTable, Cards, Macro, Playlist, or Scene*/
-  },
+  "esmodules": [
+    "module/TRPG_TW_FR.mjs"
+  ],
+  "styles": [
+    "styles/system-styles.css"
+  ],
+  "packs": [
+    {
+      "name": "monsters",
+      "label": "My Monsters",
+      "type": "Actor"
+    },
     {
       "name": "items",
       "label": "My Items",
       "type": "Item"
-    }],
-  "languages": [{
-    "lang": "fr",
-    "name": "French",
-    "path": "lang/fr.json"
-  }],
+    }
+  ],
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "French",
+      "path": "lang/fr.json"
+    }
+  ],
   "relationships": {
-    "requires": [{
-      "id": "fr-core",
-      "manifest": "https://github.com/Fonderie-VTT/fr-core/blob/main/module.json",
-      "compatibility": {
-        "verified": "12.331.5"
+    "requires": [
+      {
+        "id": "fr-core",
+        "manifest": "https://github.com/Fonderie-VTT/fr-core/blob/main/module.json",
+        "compatibility": {
+          "verified": "12.331.5"
+        }
       }
-    }]
-  }
+    ]
+  },
+  "manifest": "https://github.com/GDubuisson/TRPG_TW_FR/blob/main/system.json"
 }
