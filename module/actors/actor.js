@@ -5,7 +5,7 @@ export class TWActor extends Actor {
         console.log(data)
         if (typeof data.items === "undefined") {
             data.items = [];
-            let caps = game.tw.config.competences;
+            // let caps = game.tw.config.competences;
 
             if (data.type === "character") {
                 foundry.utils.mergeObject(data.items, caps, {overwrite: false});

@@ -49,11 +49,6 @@
     }
   ],
   "actorTypes": ["personnage"],
-  "templates": {
-    "Actor": {
-      "personnage": "systems/TRPG_TW_FR/templates/actors/personnages/personnage-sheet.hbs"
-    }
-  },
   "relationships": {
     "requires": [
       {

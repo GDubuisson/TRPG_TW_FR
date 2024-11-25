@@ -7,7 +7,7 @@ export const preloadHandlebarsTemplates = async function () {
     // Define template paths to load
     const templatePaths = [
         // ACTOR
-    "systems/TRPG_TW_FR/templates/actors/personnages/personnage-sheet.hbs"
+        "/systems/TRPG_TW_FR/templates/actors/personnages/personnage-sheet.hbs"
     ]
     return loadTemplates(templatePaths);
 }
