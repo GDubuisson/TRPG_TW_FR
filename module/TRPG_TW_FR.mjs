@@ -37,4 +37,9 @@ Hooks.once("init", async function () {
         makeDefault: true,
         label: "Fiche de Personnage TW par défaut"
     });
+
+    // Preload Handlebars Templates
+    preloadHandlebarsTemplates();
+
+    console.info("Aria : Init Done");
 })

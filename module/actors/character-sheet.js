@@ -1,11 +1,11 @@
 /**
  * Extend the basic ActorSheet with some very simple modifications
- * @extends {ActorSheet}
+ * @extends {TWCharacterSheet}
  */
 import {TWActorSheet} from "./actor-sheet.js";
 import {System} from "../config.js";
 
-export class CharacterSheet extends TWActorSheet {
+export class TWCharacterSheet extends TWActorSheet {
 
     static defaultHeight() {
         return "100%";
