@@ -15,7 +15,7 @@ export class TWCharacterSheet extends TWActorSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObjet(super.defaultOptions, {
             classes: ["theWitcher", "sheet", "actor", "character"],
-            template: System.templatesPath+"/actors/personnages/personnage-sheet.hbs",
+            template: "/systems/TRPG_TW_FR/templates/actors/personnages/personnage-sheet.hbs"/*System.templatesPath+"/actors/personnages/personnage-sheet.hbs"*/,
             width: "100%",
             height: this.defaultHeight(),
             tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial:"stats"}],

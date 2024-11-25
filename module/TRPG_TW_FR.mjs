@@ -22,6 +22,9 @@ Hooks.once("init", async function () {
     }
 
     CONFIG.TW = TW;
+    CONFIG.Actor.typeLabels = {
+        personnage: "personnage"
+    }
     CONFIG.Actor.documentClass = TWActor;
 
     game.tw = {

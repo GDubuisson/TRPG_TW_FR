@@ -2,7 +2,8 @@ export class TWActor extends Actor {
 
     /** @override */
     static async create(data, options={}) {
-        if (typeof data.items === "undefinied") {
+        console.log(data)
+        if (typeof data.items === "undefined") {
             data.items = [];
             let caps = game.tw.config.competences;
 

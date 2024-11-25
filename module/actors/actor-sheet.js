@@ -14,9 +14,13 @@ export class TWActorSheet extends ActorSheet {
     }
 
     /** @override */
-    async getData(options) {
-        // Actor's Data
-        const source = this.actor.toObject();
+    getData() {
+        const context = super.getData();
+
+        context.customData = "Données supplémentaires";
+        return context;
+        //Actor's Data
+        /*const source = this.actor.toObject();
         const actorData = this.actor.toObject(false);
 
         // Basic data
@@ -32,6 +36,6 @@ export class TWActorSheet extends ActorSheet {
             items: actorData.items
         };
 
-        return data;
+        return data;*/
     }
 }
