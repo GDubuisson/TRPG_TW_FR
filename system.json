@@ -13,34 +13,6 @@
   "styles": [
     "styles/system-styles.css"
   ],
-  "packs": [
-    {
-      "name": "personnages",
-      "label": "Personnages",
-      "type": "Actor"
-    },
-    {
-      "name": "monstres",
-      "label": "Monstres",
-      "type": "Actor"
-    },
-    {
-      "name": "objets",
-      "label": "Objets",
-      "type": "Item"
-    }
-  ],
-  "packFolders": [
-    {
-      "name": "TWFR",
-      "sorting": "m",
-      "packs": [
-        "personnages",
-        "objets",
-        "monstres"
-      ]
-    }
-  ],
   "languages": [
     {
       "lang": "fr",
@@ -48,9 +20,9 @@
       "path": "lang/fr.json"
     }
   ],
-  "actorTypes": ["personnage"],
   "relationships": {
-    "requires": [
+    "requires": [],
+    "recommends": [
       {
         "id": "fr-core",
         "manifest": "https://github.com/Fonderie-VTT/fr-core/blob/main/module.json",
@@ -60,5 +32,6 @@
       }
     ]
   },
+  "socker": true,
   "manifest": "https://github.com/GDubuisson/TRPG_TW_FR/blob/main/system.json"
 }

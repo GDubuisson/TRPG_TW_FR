@@ -1,0 +1,11 @@
+{
+  "Actor": {
+    "types": ["personnage", "monstre", "objet"],
+    "templates": {
+      "baseActor": {}
+    },
+    "personnage": {},
+    "monstre": {},
+    "objet": {}
+  }
+}

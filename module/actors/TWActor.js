@@ -1,7 +1,7 @@
 export class TWActor extends Actor {
 
     /** @override */
-    static async create(data, options={}) {
+    /*static async create(data, options={}) {
         console.log(data)
         if (typeof data.items === "undefined") {
             data.items = [];
@@ -13,5 +13,5 @@ export class TWActor extends Actor {
         }
 
         return super.create(data, options);
-    }
+    }*/
 }
