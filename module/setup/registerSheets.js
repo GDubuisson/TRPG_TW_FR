@@ -1,4 +1,4 @@
-import {TWActorSheet} from "../actors/TWActorSheet";
+import {TWActorSheet} from "../actors/TWActorSheet.js";
 
 export const registerSheets = () => {
     Items.unregisterSheet('core', ActorSheet);

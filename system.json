@@ -33,5 +33,5 @@
     ]
   },
   "socker": true,
-  "manifest": "https://github.com/GDubuisson/TRPG_TW_FR/blob/main/system.json"
+  "manifest": "https://github.com/GDubuisson/TRPG_TW_FR/system.json"
 }

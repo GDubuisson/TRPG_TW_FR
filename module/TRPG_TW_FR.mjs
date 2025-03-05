@@ -1,6 +1,6 @@
 import { WITCHER } from './setup/config.js'
 import { registerSheets } from './setup/registerSheets.js';
-import {TWActor} from "./actors/TWActor";
+import { TWActor } from "./actors/TWActor.js";
 
 async function preloadHandlebarsTemplates() {
     const templatePath = [
