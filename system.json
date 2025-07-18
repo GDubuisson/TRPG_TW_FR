@@ -1,37 +1,49 @@
 {
   "id": "TRPG_TW_FR",
-  "title": "The Witcher - FR",
-  "description": "A human-readable description of your system.",
+  "title": "Système The Witcher FR",
+  "description": "Un système de jeu de rôle fantastique personnalisé pour Foundry VTT.",
   "version": "0.0.1",
   "compatibility": {
-    "minimum": 12,
-    "verified": 12
+    "minimum": "13.346",
+    "verified": "13.346"
   },
-  "esmodules": [
-    "module/TRPG_TW_FR.mjs"
+  "authors": [
+    {
+      "name": "GDubuisson"
+    }
   ],
-  "styles": [
-    "styles/system-styles.css"
+  "packs": [
+    {
+      "name": "items",
+      "label": "Objets du Système",
+      "path": "./packs/items.db",
+      "type": "Item",
+      "system": "TRPG_TW_FR"
+    },
+    {
+      "name": "actors",
+      "label": "Acteurs du Système",
+      "path": "./packs/actors.db",
+      "type": "Actor",
+      "system": "TRPG_TW_FR"
+    }
   ],
   "languages": [
     {
       "lang": "fr",
-      "name": "French",
+      "name": "Français",
       "path": "lang/fr.json"
     }
   ],
-  "relationships": {
-    "requires": [],
-    "recommends": [
-      {
-        "id": "fr-core",
-        "manifest": "https://github.com/Fonderie-VTT/fr-core/blob/main/module.json",
-        "compatibility": {
-          "verified": "12.331.5"
-        }
-      }
-    ]
-  },
+  "styles": ["css/tw-fr.css"],
+  "scripts": ["module/tw-fr.js"],
+  "systemTypes": ["character", "npc", "item", "spell"],
+  "esmodules": [],
+  "socket": false,
   "url": "https://github.com/GDubuisson/TRPG_TW_FR",
-  "manifest": "https://github.com/GDubuisson/TRPG_TW_FR/blob/main/system.json"
+  "manifest": "https://github.com/GDubuisson/TRPG_TW_FR/releases/latest/download/system.json",
+  "download": "https://github.com/GDubuisson/TRPG_TW_FR/releases/latest/download/TRPG_TW_FR.zip",
+  "license": "LICENSE.txt",
+  "readme": "README.md",
+  "bugs": "https://github.com/GDubuisson/TRPG_TW_FR/issues"
 }
