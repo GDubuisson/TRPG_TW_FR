@@ -1,49 +1,39 @@
-name: Release Creation
+name: Release Foundry System
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*.*.*' # Déclenche ce workflow quand un tag de version (ex: v1.0.0) est poussé
 
 jobs:
-  build:
+  build_and_release:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      # Get all relevant files
-      - name: Get Includes
-        shell: bash
-        id: get-includes
-        run: echo "::set-output name=files::$(node ./.github/workflows/get-includes.js)"
+    - name: Get tag version
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
-      # Substitute the Manifest and Download URLs in the system.json
-      - name: Substitute Manifest and Download Links For Versioned Ones
-        id: sub_manifest_link_version
-        uses: microsoft/variable-substitution@v1
-        with:
-          files: './system.json'
-        env:
-          version: ${{github.event.release.tag_name}}
-          url: https://github.com/${{github.repository}}
-          manifest: https://github.com/${{github.repository}}/releases/latest/download/system.json
-          download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.zip
+    - name: Create system zip
+      run: |
+        # Crée un fichier zip de ton système.
+        # Assure-toi que system.json est à la racine du zip.
+        # Ici, on assume que ton système est directement à la racine du dépôt.
+        # Si ton système est dans un sous-dossier (ex: "systems/mon-systeme"), ajuste le chemin.
+        zip -r TRPG_TW_FR.zip . -x "*.git*" "*node_modules*"
 
-      # create a zip file with all files required by the system to add to the release
-      - name: Zip Files
-        working-directory: ./
-        run: zip -r ./system.zip ${{steps.get-includes.outputs.files}}
-
-      # Create a release for this specific version
-      - name: Update Release with Files
-        id: create_version_release
-        uses: ncipollo/release-action@v1
-        with:
-          allowUpdates: true # Set this to false if you want to prevent updating existing releases
-          name: ${{ github.event.release.name }}
-          draft: false
-          prerelease: false
-          artifactErrorsFailBuild: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: "./system.json, ./system.zip"
-          tag: ${{ github.event.release.tag_name }}
-          body: ${{ github.event.release.body }}
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          TRPG_TW_FR.zip # Attache le fichier zip créé
+        name: Release ${{ steps.get_version.outputs.VERSION }}
+        tag_name: ${{ steps.get_version.outputs.VERSION }}
+        draft: false # Mettre à true si tu veux que la release soit un brouillon
+        prerelease: false # Mettre à true si c'est une pré-release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
