@@ -3,7 +3,7 @@ name: Release Foundry System
 on:
   push:
     tags:
-      - 'v*.*.*' # Déclenche ce workflow quand un tag de version (ex: v1.0.0) est poussé
+      - 'v*.*.*'
 
 jobs:
   build_and_release:
@@ -19,10 +19,6 @@ jobs:
 
     - name: Create system zip
       run: |
-        # Crée un fichier zip de ton système.
-        # Assure-toi que system.json est à la racine du zip.
-        # Ici, on assume que ton système est directement à la racine du dépôt.
-        # Si ton système est dans un sous-dossier (ex: "systems/mon-systeme"), ajuste le chemin.
         zip -r TRPG_TW_FR.zip . -x "*.git*" "*node_modules*"
 
     - name: Create Release
@@ -30,10 +26,10 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          TRPG_TW_FR.zip # Attache le fichier zip créé
+          TRPG_TW_FR.zip
         name: Release ${{ steps.get_version.outputs.VERSION }}
         tag_name: ${{ steps.get_version.outputs.VERSION }}
-        draft: false # Mettre à true si tu veux que la release soit un brouillon
-        prerelease: false # Mettre à true si c'est une pré-release
+        draft: false
+        prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
