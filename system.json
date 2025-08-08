@@ -1,49 +1,52 @@
 {
   "id": "TRPG_TW_FR",
-  "title": "Système The Witcher FR",
-  "description": "Un système de jeu de rôle fantastique personnalisé pour Foundry VTT.",
+  "title": "The Witcher Tabletop RPG FR",
+  "description": "Jeu de rôle sur table inspiré par l'univers de The Witcher, développé par CD Projekt Red.",
   "version": "0.0.1",
   "compatibility": {
-    "minimum": "13.346",
-    "verified": "13.346"
+    "minimum": 12,
+    "verified": 12
   },
-  "authors": [
-    {
-      "name": "GDubuisson"
-    }
-  ],
-  "packs": [
+  "authors": [{
+    "name": "Hacky"
+  }],
+  "esmodules": ["mysystem.mjs"],
+  "styles": ["styles/system-styles.css"],
+  "packs": [{
+    "name": "monsters",
+    "label": "My Monsters",
+    "type": "Actor"
+  },
     {
       "name": "items",
-      "label": "Objets du Système",
-      "path": "./packs/items.db",
-      "type": "Item",
-      "system": "TRPG_TW_FR"
+      "label": "My Items",
+      "type": "Item"
+    }],
+  "languages": [{
+    "lang": "fr",
+    "name": "Français",
+    "path": "lang/fr.json"
+  }],
+  "documentTypes": {
+    "Actor": {
+      "hero": { "htmlFields": ["background.biography"] },
+      "villain": { "htmlFields": ["background.biography"] },
+      "pawn": {}
     },
-    {
-      "name": "actors",
-      "label": "Acteurs du Système",
-      "path": "./packs/actors.db",
-      "type": "Actor",
-      "system": "TRPG_TW_FR"
+    "Item": {
+      "weapon": {},
+      "spell": {}
     }
-  ],
-  "languages": [
-    {
-      "lang": "fr",
-      "name": "Français",
-      "path": "lang/fr.json"
-    }
-  ],
-  "styles": ["css/tw-fr.css"],
-  "scripts": ["module/tw-fr.js"],
-  "systemTypes": ["character", "npc", "item", "spell"],
-  "esmodules": [],
+  },
   "socket": false,
+  "initiative": "1d20",
+  "grid": {
+    "distance": 10,
+    "units": "ft"
+  },
+  "primaryTokenAttribute": "resources.health",
+  "secondaryTokenAttribute": "resources.power",
   "url": "https://github.com/GDubuisson/TRPG_TW_FR",
-  "manifest": "https://github.com/GDubuisson/TRPG_TW_FR/releases/latest/download/system.json",
-  "download": "https://github.com/GDubuisson/TRPG_TW_FR/archive/refs/tags/0.0.1.zip",
-  "license": "LICENSE.txt",
-  "readme": "README.md",
-  "bugs": "https://github.com/GDubuisson/TRPG_TW_FR/issues"
+  "manifest": "https://github.com/GDubuisson/TRPG_TW_FR/blob/main/system.json",
+  "download": "https://github.com/GDubuisson/TRPG_TW_FR/releases/download/latest/TRPG_TW_FR.zip"
 }
