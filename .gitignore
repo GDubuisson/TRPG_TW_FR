@@ -1,8 +1,0 @@
-.idea
-.idea/*
-packs/*/CURRENT
-packs/*/LOCK
-packs/*/LOG
-packs/*/LOG.old
-packs/*/MANIFEST-*
-packs/*/*.log
