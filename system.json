@@ -1,31 +1,31 @@
 {
-  "id": "TWFR",
+  "name": "trpg_tw_fr",
   "title": "The Witcher RPG - French",
   "description": "Système du JdR The Witcher en français.",
   "version": "0.0.1",
-  "compatibility": {
-    "minimum": 12,
-    "verified": 12
-  },
-  "esmodules": ["TRPG_TW_FR.mjs"],
+  "minimumCoreVersion": "12",
+  "author": "VotreNom",
+  "esmodules": ["dist/TRPG_TW_FR.js"],
   "styles": ["styles/system-styles.css"],
   "packs": [
     {
-    "name": "monsters",
-    "label": "My Monsters",
-    "type": "Actor"
-  },
-  {
-    "name": "items",
-    "label": "My Items",
-    "type": "Item"
-  }
-],
-  "languages": [{
-    "lang": "fr",
-    "name": "French",
-    "path": "lang/fr.json"
-  }],
+      "name": "monsters",
+      "label": "Monstres",
+      "type": "Actor"
+    },
+    {
+      "name": "items",
+      "label": "Objets",
+      "type": "Item"
+    }
+  ],
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
   "socket": false,
   "initiative": "1d20",
   "grid": {
@@ -34,7 +34,7 @@
   },
   "primaryTokenAttribute": "resources.health",
   "secondaryTokenAttribute": "resources.power",
-  "url": "https://your/hosted/system/repo/",
-  "manifest": "https://your/hosted/system/repo/system.json",
-  "download": "https://your/packaged/download/archive.zip"
+  "url": "",
+  "manifest": "",
+  "download": ""
 }

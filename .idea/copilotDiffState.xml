@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/.gitignore">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/.gitignore" />
+              <option name="updatedContent" value="node_modules/&#10;dist/&#10;.cache/&#10;.env&#10;.DS_Store&#10;.vscode/&#10;npm-debug.log&#10;yarn-error.log&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/TRPG_TW_FR.mjs">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/TRPG_TW_FR.mjs" />
+              <option name="updatedContent" value="import &quot;./module/data-model.mjs&quot;;&#10;import &quot;./module/document.mjs&quot;;&#10;&#10;Hooks.once('init', async function() {&#10;  console.log('TRPG_TW_FR | Initialisation du système The Witcher (FR)');&#10;&#10;  // Exemple de setting système&#10;  game.settings.register('trpg_tw_fr', 'demoMode', {&#10;    name: 'TRPG_TW_FR.Settings.DemoMode.Name',&#10;    hint: 'TRPG_TW_FR.Settings.DemoMode.Hint',&#10;    scope: 'world',&#10;    config: true,&#10;    type: Boolean,&#10;    default: false&#10;  });&#10;&#10;  // Définir des classes Document personnalisées fournies par module/data-model.mjs&#10;  if (typeof TRPGActor !== 'undefined') CONFIG.Actor.documentClass = TRPGActor;&#10;  if (typeof TRPGItem !== 'undefined') CONFIG.Item.documentClass = TRPGItem;&#10;&#10;  // Configuration minimale (exemples)&#10;  CONFIG.Combat.initiative = { formula: &quot;1d20&quot;, decimals: 2 };&#10;&#10;  console.log('TRPG_TW_FR | Configuration initiale appliquée');&#10;});&#10;&#10;Hooks.once('ready', async function() {&#10;  console.log('TRPG_TW_FR | Système prêt');&#10;&#10;  // Placez ici les migrations, preload de templates, ou initialisations qui nécessitent game.*&#10;  if (game.user.isGM) {&#10;    console.log('TRPG_TW_FR | Utilisateur GM détecté');&#10;  }&#10;});&#10;&#10;// Exporter les symboles si d'autres modules veulent les utiliser&#10;export { };" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/lang/fr.json">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/lang/fr.json" />
+              <option name="updatedContent" value="{&#10;  &quot;TRPG_TW_FR&quot;: {&#10;    &quot;Title&quot;: &quot;The Witcher TTRPG (FR)&quot;,&#10;    &quot;Settings&quot;: {&#10;      &quot;DemoMode&quot;: {&#10;        &quot;Name&quot;: &quot;Mode Démo&quot;,&#10;        &quot;Hint&quot;: &quot;Active des fonctionnalités de démonstration&quot;&#10;      }&#10;    },&#10;    &quot;Sheet&quot;: {&#10;      &quot;Resources&quot;: &quot;Ressources&quot;,&#10;      &quot;Health&quot;: &quot;PV&quot;,&#10;      &quot;Power&quot;: &quot;Puissance&quot;,&#10;      &quot;Description&quot;: &quot;Description&quot;&#10;    }&#10;  }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/module/data-model.mjs">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/module/data-model.mjs" />
+              <option name="updatedContent" value="/**&#10; * Classe Actor minimale pour le système The Witcher (FR)&#10; * Étend la classe Actor de Foundry et prépare les données système de base.&#10; */&#10;class TRPGActor extends Actor {&#10;  prepareData() {&#10;    super.prepareData();&#10;    // Préparez ici les données spécifiques au système (ex: resources, caractéristiques)&#10;    const actorData = this.system || this.data?.data || {};&#10;    actorData.resources = actorData.resources || { health: { value: 0, max: 0 }, power: { value: 0, max: 0 } };&#10;  }&#10;}&#10;&#10;/**&#10; * Classe Item minimale pour le système The Witcher (FR)&#10; */&#10;class TRPGItem extends Item {&#10;  prepareData() {&#10;    super.prepareData();&#10;    const itemData = this.system || this.data?.data || {};&#10;    itemData.description = itemData.description || &quot;&quot;;&#10;  }&#10;}&#10;&#10;// Exposer globalement pour que TRPG_TW_FR.mjs puisse les référencer lors de l'init&#10;window.TRPGActor = TRPGActor;&#10;window.TRPGItem = TRPGItem;&#10;&#10;export { TRPGActor, TRPGItem };" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/module/document.mjs">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/module/document.mjs" />
+              <option name="updatedContent" value="/**&#10; * Feuille d'acteur minimale pour The Witcher (FR)&#10; */&#10;class TRPGActorSheet extends ActorSheet {&#10;  static get defaultOptions() {&#10;    return mergeObject(super.defaultOptions, {&#10;      classes: [&quot;trpg-tw-fr&quot;, &quot;sheet&quot;, &quot;actor&quot;],&#10;      template: &quot;systems/trpg_tw_fr/templates/actor-sheet.html&quot;,&#10;      width: 720,&#10;      height: 680&#10;    });&#10;  }&#10;&#10;  getData() {&#10;    const data = super.getData();&#10;    // Ajoutez ici les données nécessaires pour le template&#10;    return data;&#10;  }&#10;}&#10;&#10;/**&#10; * Feuille d'objet minimale pour The Witcher (FR)&#10; */&#10;class TRPGItemSheet extends ItemSheet {&#10;  static get defaultOptions() {&#10;    return mergeObject(super.defaultOptions, {&#10;      classes: [&quot;trpg-tw-fr&quot;, &quot;sheet&quot;, &quot;item&quot;],&#10;      template: &quot;systems/trpg_tw_fr/templates/item-sheet.html&quot;,&#10;      width: 520,&#10;      height: 480&#10;    });&#10;  }&#10;&#10;  getData() {&#10;    const data = super.getData();&#10;    return data;&#10;  }&#10;}&#10;&#10;// Exposer globalement pour être utilisé lors de l'init&#10;window.TRPGActorSheet = TRPGActorSheet;&#10;window.TRPGItemSheet = TRPGItemSheet;&#10;&#10;export { TRPGActorSheet, TRPGItemSheet };" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/package.json">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/package.json" />
+              <option name="updatedContent" value="{&#10;  &quot;name&quot;: &quot;trpg_tw_fr&quot;,&#10;  &quot;version&quot;: &quot;0.0.1&quot;,&#10;  &quot;description&quot;: &quot;The Witcher TTRPG system (FR) for FoundryVTT&quot;,&#10;  &quot;main&quot;: &quot;TRPG_TW_FR.mjs&quot;,&#10;  &quot;scripts&quot;: {&#10;    &quot;build&quot;: &quot;esbuild TRPG_TW_FR.mjs --bundle --format=esm --outdir=dist --sourcemap&quot;,&#10;    &quot;watch&quot;: &quot;esbuild TRPG_TW_FR.mjs --bundle --format=esm --outdir=dist --sourcemap --watch&quot;&#10;  },&#10;  &quot;author&quot;: &quot;VotreNom&quot;,&#10;  &quot;license&quot;: &quot;MIT&quot;,&#10;  &quot;devDependencies&quot;: {&#10;    &quot;esbuild&quot;: &quot;^0.19.0&quot;&#10;  }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/system.json">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/system.json" />
+              <option name="originalContent" value="{&#10;  &quot;name&quot;: &quot;trpg_tw_fr&quot;,&#10;  &quot;title&quot;: &quot;The Witcher RPG - French&quot;,&#10;  &quot;description&quot;: &quot;Système du JdR The Witcher en français.&quot;,&#10;  &quot;version&quot;: &quot;0.0.1&quot;,&#10;  &quot;minimumCoreVersion&quot;: &quot;12&quot;,&#10;  &quot;author&quot;: &quot;VotreNom&quot;,&#10;  &quot;esmodules&quot;: [&quot;dist/TRPG_TW_FR.mjs&quot;],&#10;  &quot;styles&quot;: [&quot;styles/system-styles.css&quot;],&#10;  &quot;packs&quot;: [&#10;    {&#10;      &quot;name&quot;: &quot;monsters&quot;,&#10;      &quot;label&quot;: &quot;Monstres&quot;,&#10;      &quot;type&quot;: &quot;Actor&quot;&#10;    },&#10;    {&#10;      &quot;name&quot;: &quot;items&quot;,&#10;      &quot;label&quot;: &quot;Objets&quot;,&#10;      &quot;type&quot;: &quot;Item&quot;&#10;    }&#10;  ],&#10;  &quot;languages&quot;: [&#10;    {&#10;      &quot;lang&quot;: &quot;fr&quot;,&#10;      &quot;name&quot;: &quot;Français&quot;,&#10;      &quot;path&quot;: &quot;lang/fr.json&quot;&#10;    }&#10;  ],&#10;  &quot;socket&quot;: false,&#10;  &quot;initiative&quot;: &quot;1d20&quot;,&#10;  &quot;grid&quot;: {&#10;    &quot;distance&quot;: 10,&#10;    &quot;units&quot;: &quot;ft&quot;&#10;  },&#10;  &quot;primaryTokenAttribute&quot;: &quot;resources.health&quot;,&#10;  &quot;secondaryTokenAttribute&quot;: &quot;resources.power&quot;,&#10;  &quot;url&quot;: &quot;&quot;,&#10;  &quot;manifest&quot;: &quot;&quot;,&#10;  &quot;download&quot;: &quot;&quot;&#10;}" />
+              <option name="updatedContent" value="{&#10;  &quot;name&quot;: &quot;trpg_tw_fr&quot;,&#10;  &quot;title&quot;: &quot;The Witcher RPG - French&quot;,&#10;  &quot;description&quot;: &quot;Système du JdR The Witcher en français.&quot;,&#10;  &quot;version&quot;: &quot;0.0.1&quot;,&#10;  &quot;minimumCoreVersion&quot;: &quot;12&quot;,&#10;  &quot;author&quot;: &quot;VotreNom&quot;,&#10;  &quot;esmodules&quot;: [&quot;dist/TRPG_TW_FR.js&quot;],&#10;  &quot;styles&quot;: [&quot;styles/system-styles.css&quot;],&#10;  &quot;packs&quot;: [&#10;    {&#10;      &quot;name&quot;: &quot;monsters&quot;,&#10;      &quot;label&quot;: &quot;Monstres&quot;,&#10;      &quot;type&quot;: &quot;Actor&quot;&#10;    },&#10;    {&#10;      &quot;name&quot;: &quot;items&quot;,&#10;      &quot;label&quot;: &quot;Objets&quot;,&#10;      &quot;type&quot;: &quot;Item&quot;&#10;    }&#10;  ],&#10;  &quot;languages&quot;: [&#10;    {&#10;      &quot;lang&quot;: &quot;fr&quot;,&#10;      &quot;name&quot;: &quot;Français&quot;,&#10;      &quot;path&quot;: &quot;lang/fr.json&quot;&#10;    }&#10;  ],&#10;  &quot;socket&quot;: false,&#10;  &quot;initiative&quot;: &quot;1d20&quot;,&#10;  &quot;grid&quot;: {&#10;    &quot;distance&quot;: 10,&#10;    &quot;units&quot;: &quot;ft&quot;&#10;  },&#10;  &quot;primaryTokenAttribute&quot;: &quot;resources.health&quot;,&#10;  &quot;secondaryTokenAttribute&quot;: &quot;resources.power&quot;,&#10;  &quot;url&quot;: &quot;&quot;,&#10;  &quot;manifest&quot;: &quot;&quot;,&#10;  &quot;download&quot;: &quot;&quot;&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/templates/actor-sheet.html">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/templates/actor-sheet.html" />
+              <option name="updatedContent" value="&lt;!doctype html&gt;&#10;&lt;html&gt;&#10;  &lt;body class=&quot;sheet actor&quot;&gt;&#10;    &lt;header&gt;&#10;      &lt;h1&gt;{{name}}&lt;/h1&gt;&#10;    &lt;/header&gt;&#10;    &lt;section&gt;&#10;      &lt;h2&gt;Ressources&lt;/h2&gt;&#10;      &lt;p&gt;PV : {{system.resources.health.value}} / {{system.resources.health.max}}&lt;/p&gt;&#10;      &lt;p&gt;Puissance : {{system.resources.power.value}} / {{system.resources.power.max}}&lt;/p&gt;&#10;    &lt;/section&gt;&#10;  &lt;/body&gt;&#10;&lt;/html&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/templates/item-sheet.html">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/templates/item-sheet.html" />
+              <option name="updatedContent" value="&lt;!doctype html&gt;&#10;&lt;html&gt;&#10;  &lt;body class=&quot;sheet item&quot;&gt;&#10;    &lt;header&gt;&#10;      &lt;h1&gt;{{name}}&lt;/h1&gt;&#10;    &lt;/header&gt;&#10;    &lt;section&gt;&#10;      &lt;h2&gt;Description&lt;/h2&gt;&#10;      &lt;div&gt;{{system.description}}&lt;/div&gt;&#10;    &lt;/section&gt;&#10;  &lt;/body&gt;&#10;&lt;/html&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

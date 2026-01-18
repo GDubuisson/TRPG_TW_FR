@@ -1,0 +1,15 @@
+{
+  "name": "trpg_tw_fr",
+  "version": "0.0.1",
+  "description": "The Witcher TTRPG system (FR) for FoundryVTT",
+  "main": "TRPG_TW_FR.mjs",
+  "scripts": {
+    "build": "esbuild TRPG_TW_FR.mjs --bundle --format=esm --outdir=dist --sourcemap",
+    "watch": "esbuild TRPG_TW_FR.mjs --bundle --format=esm --outdir=dist --sourcemap --watch"
+  },
+  "author": "VotreNom",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.27.2"
+  }
+}

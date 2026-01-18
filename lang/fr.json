@@ -1,0 +1,18 @@
+{
+  "TRPG_TW_FR": {
+    "Title": "The Witcher TTRPG (FR)",
+    "Settings": {
+      "DemoMode": {
+        "Name": "Mode Démo",
+        "Hint": "Active des fonctionnalités de démonstration"
+      }
+    },
+    "Sheet": {
+      "Resources": "Ressources",
+      "Health": "PV",
+      "Power": "Puissance",
+      "Description": "Description"
+    }
+  }
+}
+
