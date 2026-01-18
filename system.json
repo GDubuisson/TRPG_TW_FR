@@ -6,7 +6,7 @@
   "version": "0.0.1",
   "minimumCoreVersion": "12",
   "author": "VotreNom",
-  "esmodules": ["dist/TRPG_TW_FR.js"],
+  "esmodules": ["TRPG_TW_FR.js"],
   "styles": ["styles/system-styles.css"],
   "packs": [
     {

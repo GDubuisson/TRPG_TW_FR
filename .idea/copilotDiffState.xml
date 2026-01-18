@@ -35,47 +35,6 @@
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/module/document.mjs">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/module/document.mjs" />
-              <option name="updatedContent" value="/**&#10; * Feuille d'acteur minimale pour The Witcher (FR)&#10; */&#10;class TRPGActorSheet extends ActorSheet {&#10;  static get defaultOptions() {&#10;    return mergeObject(super.defaultOptions, {&#10;      classes: [&quot;trpg-tw-fr&quot;, &quot;sheet&quot;, &quot;actor&quot;],&#10;      template: &quot;systems/trpg_tw_fr/templates/actor-sheet.html&quot;,&#10;      width: 720,&#10;      height: 680&#10;    });&#10;  }&#10;&#10;  getData() {&#10;    const data = super.getData();&#10;    // Ajoutez ici les données nécessaires pour le template&#10;    return data;&#10;  }&#10;}&#10;&#10;/**&#10; * Feuille d'objet minimale pour The Witcher (FR)&#10; */&#10;class TRPGItemSheet extends ItemSheet {&#10;  static get defaultOptions() {&#10;    return mergeObject(super.defaultOptions, {&#10;      classes: [&quot;trpg-tw-fr&quot;, &quot;sheet&quot;, &quot;item&quot;],&#10;      template: &quot;systems/trpg_tw_fr/templates/item-sheet.html&quot;,&#10;      width: 520,&#10;      height: 480&#10;    });&#10;  }&#10;&#10;  getData() {&#10;    const data = super.getData();&#10;    return data;&#10;  }&#10;}&#10;&#10;// Exposer globalement pour être utilisé lors de l'init&#10;window.TRPGActorSheet = TRPGActorSheet;&#10;window.TRPGItemSheet = TRPGItemSheet;&#10;&#10;export { TRPGActorSheet, TRPGItemSheet };" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/package.json">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/package.json" />
-              <option name="updatedContent" value="{&#10;  &quot;name&quot;: &quot;trpg_tw_fr&quot;,&#10;  &quot;version&quot;: &quot;0.0.1&quot;,&#10;  &quot;description&quot;: &quot;The Witcher TTRPG system (FR) for FoundryVTT&quot;,&#10;  &quot;main&quot;: &quot;TRPG_TW_FR.mjs&quot;,&#10;  &quot;scripts&quot;: {&#10;    &quot;build&quot;: &quot;esbuild TRPG_TW_FR.mjs --bundle --format=esm --outdir=dist --sourcemap&quot;,&#10;    &quot;watch&quot;: &quot;esbuild TRPG_TW_FR.mjs --bundle --format=esm --outdir=dist --sourcemap --watch&quot;&#10;  },&#10;  &quot;author&quot;: &quot;VotreNom&quot;,&#10;  &quot;license&quot;: &quot;MIT&quot;,&#10;  &quot;devDependencies&quot;: {&#10;    &quot;esbuild&quot;: &quot;^0.19.0&quot;&#10;  }&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/system.json">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/system.json" />
-              <option name="originalContent" value="{&#10;  &quot;name&quot;: &quot;trpg_tw_fr&quot;,&#10;  &quot;title&quot;: &quot;The Witcher RPG - French&quot;,&#10;  &quot;description&quot;: &quot;Système du JdR The Witcher en français.&quot;,&#10;  &quot;version&quot;: &quot;0.0.1&quot;,&#10;  &quot;minimumCoreVersion&quot;: &quot;12&quot;,&#10;  &quot;author&quot;: &quot;VotreNom&quot;,&#10;  &quot;esmodules&quot;: [&quot;dist/TRPG_TW_FR.js&quot;],&#10;  &quot;styles&quot;: [&quot;styles/system-styles.css&quot;],&#10;  &quot;packs&quot;: [&#10;    {&#10;      &quot;name&quot;: &quot;monsters&quot;,&#10;      &quot;label&quot;: &quot;Monstres&quot;,&#10;      &quot;type&quot;: &quot;Actor&quot;&#10;    },&#10;    {&#10;      &quot;name&quot;: &quot;items&quot;,&#10;      &quot;label&quot;: &quot;Objets&quot;,&#10;      &quot;type&quot;: &quot;Item&quot;&#10;    }&#10;  ],&#10;  &quot;languages&quot;: [&#10;    {&#10;      &quot;lang&quot;: &quot;fr&quot;,&#10;      &quot;name&quot;: &quot;Français&quot;,&#10;      &quot;path&quot;: &quot;lang/fr.json&quot;&#10;    }&#10;  ],&#10;  &quot;socket&quot;: false,&#10;  &quot;initiative&quot;: &quot;1d20&quot;,&#10;  &quot;grid&quot;: {&#10;    &quot;distance&quot;: 10,&#10;    &quot;units&quot;: &quot;ft&quot;&#10;  },&#10;  &quot;primaryTokenAttribute&quot;: &quot;resources.health&quot;,&#10;  &quot;secondaryTokenAttribute&quot;: &quot;resources.power&quot;,&#10;  &quot;url&quot;: &quot;&quot;,&#10;  &quot;manifest&quot;: &quot;&quot;,&#10;  &quot;download&quot;: &quot;&quot;&#10;}" />
-              <option name="updatedContent" value="{&#10;  &quot;name&quot;: &quot;trpg_tw_fr&quot;,&#10;  &quot;title&quot;: &quot;The Witcher RPG - French&quot;,&#10;  &quot;description&quot;: &quot;Système du JdR The Witcher en français.&quot;,&#10;  &quot;version&quot;: &quot;0.0.1&quot;,&#10;  &quot;minimumCoreVersion&quot;: &quot;12&quot;,&#10;  &quot;author&quot;: &quot;VotreNom&quot;,&#10;  &quot;esmodules&quot;: [&quot;dist/TRPG_TW_FR.js&quot;],&#10;  &quot;styles&quot;: [&quot;styles/system-styles.css&quot;],&#10;  &quot;packs&quot;: [&#10;    {&#10;      &quot;name&quot;: &quot;monsters&quot;,&#10;      &quot;label&quot;: &quot;Monstres&quot;,&#10;      &quot;type&quot;: &quot;Actor&quot;&#10;    },&#10;    {&#10;      &quot;name&quot;: &quot;items&quot;,&#10;      &quot;label&quot;: &quot;Objets&quot;,&#10;      &quot;type&quot;: &quot;Item&quot;&#10;    }&#10;  ],&#10;  &quot;languages&quot;: [&#10;    {&#10;      &quot;lang&quot;: &quot;fr&quot;,&#10;      &quot;name&quot;: &quot;Français&quot;,&#10;      &quot;path&quot;: &quot;lang/fr.json&quot;&#10;    }&#10;  ],&#10;  &quot;socket&quot;: false,&#10;  &quot;initiative&quot;: &quot;1d20&quot;,&#10;  &quot;grid&quot;: {&#10;    &quot;distance&quot;: 10,&#10;    &quot;units&quot;: &quot;ft&quot;&#10;  },&#10;  &quot;primaryTokenAttribute&quot;: &quot;resources.health&quot;,&#10;  &quot;secondaryTokenAttribute&quot;: &quot;resources.power&quot;,&#10;  &quot;url&quot;: &quot;https://github.com/GDubuisson/TRPG_TW_FR&quot;,&#10;  &quot;manifest&quot;: &quot;https://raw.githubusercontent.com/GDubuisson/TRPG_TW_FR/main/system.json&quot;,&#10;  &quot;download&quot;: &quot;https://github.com/GDubuisson/TRPG_TW_FR/archive/refs/heads/main.zip&quot;&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/templates/actor-sheet.html">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/templates/actor-sheet.html" />
-              <option name="updatedContent" value="&lt;!doctype html&gt;&#10;&lt;html&gt;&#10;  &lt;body class=&quot;sheet actor&quot;&gt;&#10;    &lt;header&gt;&#10;      &lt;h1&gt;{{name}}&lt;/h1&gt;&#10;    &lt;/header&gt;&#10;    &lt;section&gt;&#10;      &lt;h2&gt;Ressources&lt;/h2&gt;&#10;      &lt;p&gt;PV : {{system.resources.health.value}} / {{system.resources.health.max}}&lt;/p&gt;&#10;      &lt;p&gt;Puissance : {{system.resources.power.value}} / {{system.resources.power.max}}&lt;/p&gt;&#10;    &lt;/section&gt;&#10;  &lt;/body&gt;&#10;&lt;/html&gt;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/templates/item-sheet.html">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/templates/item-sheet.html" />
-              <option name="updatedContent" value="&lt;!doctype html&gt;&#10;&lt;html&gt;&#10;  &lt;body class=&quot;sheet item&quot;&gt;&#10;    &lt;header&gt;&#10;      &lt;h1&gt;{{name}}&lt;/h1&gt;&#10;    &lt;/header&gt;&#10;    &lt;section&gt;&#10;      &lt;h2&gt;Description&lt;/h2&gt;&#10;      &lt;div&gt;{{system.description}}&lt;/div&gt;&#10;    &lt;/section&gt;&#10;  &lt;/body&gt;&#10;&lt;/html&gt;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
       </map>
     </option>
   </component>
