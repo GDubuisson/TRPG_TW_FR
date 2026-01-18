@@ -34,7 +34,7 @@
   },
   "primaryTokenAttribute": "resources.health",
   "secondaryTokenAttribute": "resources.power",
-  "url": "",
-  "manifest": "",
-  "download": ""
+  "url": "https://github.com/GDubuisson/TRPG_TW_FR",
+  "manifest": "https://raw.githubusercontent.com/GDubuisson/TRPG_TW_FR/main/system.json",
+  "download": "https://github.com/GDubuisson/TRPG_TW_FR/archive/refs/heads/main.zip"
 }
