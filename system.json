@@ -1,11 +1,12 @@
 {
   "id": "trpg_tw_fr",
-  "name": "trpg_tw_fr",
   "title": "The Witcher RPG - French",
   "description": "Système du JdR The Witcher en français.",
   "version": "0.0.1",
-  "minimumCoreVersion": "12",
-  "author": "VotreNom",
+  "compatibleCoreVersion": "12",
+  "authors": [
+    { "name": "VotreNom" }
+  ],
   "esmodules": ["TRPG_TW_FR.mjs"],
   "styles": ["styles/system-styles.css"],
   "packs": [
