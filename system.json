@@ -1,4 +1,5 @@
 {
+  "id": "trpg_tw_fr",
   "name": "trpg_tw_fr",
   "title": "The Witcher RPG - French",
   "description": "Système du JdR The Witcher en français.",
@@ -11,12 +12,14 @@
     {
       "name": "monsters",
       "label": "Monstres",
-      "type": "Actor"
+      "type": "Actor",
+      "system": "trpg_tw_fr"
     },
     {
       "name": "items",
       "label": "Objets",
-      "type": "Item"
+      "type": "Item",
+      "system": "trpg_tw_fr"
     }
   ],
   "languages": [
@@ -30,7 +33,7 @@
   "initiative": "1d20",
   "grid": {
     "distance": 10,
-    "units": "ft"
+    "units": "m"
   },
   "primaryTokenAttribute": "resources.health",
   "secondaryTokenAttribute": "resources.power",
