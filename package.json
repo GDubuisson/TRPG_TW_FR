@@ -1,6 +1,6 @@
 {
   "name": "trpg_tw_fr",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The Witcher TTRPG system (FR) for FoundryVTT",
   "main": "TRPG_TW_FR.mjs",
   "scripts": {
