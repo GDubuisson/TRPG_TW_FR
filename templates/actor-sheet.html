@@ -1,14 +1,446 @@
-<!doctype html>
-<html lang="fr">
-  <body class="sheet actor">
-    <header>
-      <h1>{{name}}</h1>
-    </header>
-    <section>
-      <h2>Ressources</h2>
-      <p>PV : {{system.resources.health.value}} / {{system.resources.health.max}}</p>
-      <p>Puissance : {{system.resources.power.value}} / {{system.resources.power.max}}</p>
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Fiche de Personnage JDR Numérique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#7c2d12", // Deep rustic red/brown
+            "background-light": "#f4f1ea", // Light parchment
+            "background-dark": "#1a1a1a", // Dark charcoal
+          },
+          fontFamily: {
+            display: ["Crimson Pro", "serif"],
+            sans: ["Inter", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    h1, h2, h3 {
+      font-family: 'Crimson Pro', serif;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 transition-colors duration-200 min-h-screen p-4 lg:p-8">
+<div class="max-w-7xl mx-auto">
+  <header class="flex justify-between items-center mb-8 border-b border-slate-300 dark:border-slate-700 pb-4">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-primary text-4xl">auto_stories</span>
+      <h1 class="text-3xl font-bold tracking-tight text-primary uppercase">Journal du Héros</h1>
+    </div>
+    <div class="flex items-center gap-4">
+      <button id="toggle-dark" type="button" aria-label="Basculer thème sombre" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+        <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+        <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+      </button>
+      <button id="save-character" type="button" aria-label="Enregistrer le personnage" class="bg-primary text-white px-4 py-2 rounded flex items-center gap-2 hover:opacity-90 transition-opacity">
+        <span class="material-symbols-outlined text-sm">save</span>
+        <span>Enregistrer le personnage</span>
+      </button>
+    </div>
+  </header>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <div class="lg:col-span-4 space-y-6">
+      <section class="bg-white/50 dark:bg-slate-900/50 p-4 border border-slate-300 dark:border-slate-700 rounded shadow-sm">
+        <h2 class="text-xl font-bold mb-4 border-b border-slate-300 dark:border-slate-700 pb-1 text-primary">Informations de Base</h2>
+        <div class="space-y-3">
+          <div class="grid grid-cols-3 items-center">
+            <label for="actor-name" class="text-sm font-semibold uppercase tracking-wider opacity-70">NOM</label>
+            <input id="actor-name" name="name" aria-label="Nom du personnage" class="col-span-2 bg-transparent border-b border-slate-300 dark:border-slate-700 focus:border-primary focus:ring-0 text-sm py-1" placeholder="Valerius Gray" type="text"/>
+          </div>
+          <div class="grid grid-cols-3 items-center">
+            <label for="actor-race" class="text-sm font-semibold uppercase tracking-wider opacity-70">RACE</label>
+            <input id="actor-race" name="race" aria-label="Race" class="col-span-2 bg-transparent border-b border-slate-300 dark:border-slate-700 focus:border-primary focus:ring-0 text-sm py-1" placeholder="Humain" type="text"/>
+          </div>
+          <div class="grid grid-cols-3 items-center">
+            <label for="actor-gender" class="text-sm font-semibold uppercase tracking-wider opacity-70">GENRE</label>
+            <input id="actor-gender" name="gender" aria-label="Genre" class="col-span-2 bg-transparent border-b border-slate-300 dark:border-slate-700 focus:border-primary focus:ring-0 text-sm py-1" placeholder="Non-binaire" type="text"/>
+          </div>
+          <div class="grid grid-cols-3 items-center">
+            <label for="actor-age" class="text-sm font-semibold uppercase tracking-wider opacity-70">ÂGE</label>
+            <input id="actor-age" name="age" aria-label="Âge" class="col-span-2 bg-transparent border-b border-slate-300 dark:border-slate-700 focus:border-primary focus:ring-0 text-sm py-1" placeholder="28" type="text"/>
+          </div>
+          <div class="grid grid-cols-3 items-center">
+            <label for="actor-origin" class="text-sm font-semibold uppercase tracking-wider opacity-70">ORIGINE</label>
+            <input id="actor-origin" name="origin" aria-label="Origine" class="col-span-2 bg-transparent border-b border-slate-300 dark:border-slate-700 focus:border-primary focus:ring-0 text-sm py-1" placeholder="Royaume d'Aethelgard" type="text"/>
+          </div>
+        </div>
+      </section>
+      <section class="bg-white/50 dark:bg-slate-900/50 p-4 border border-slate-300 dark:border-slate-700 rounded shadow-sm">
+        <h2 class="text-xl font-bold mb-4 border-b border-slate-300 dark:border-slate-700 pb-1 text-primary">Attributs Principaux</h2>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-2">
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1">
+            <span class="font-bold text-sm" title="INTELLIGENCE">INT</span>
+            <input aria-label="INT" class="w-12 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold" type="number" value="0"/>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1">
+            <span class="font-bold text-sm" title="ÉTOURDISSEMENT">STUN</span>
+            <input aria-label="STUN" class="w-12 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold" type="number" value="0"/>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1">
+            <span class="font-bold text-sm" title="REFLEXES">REF</span>
+            <input aria-label="REF" class="w-12 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold" type="number" value="0"/>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1">
+            <span class="font-bold text-sm" title="COURSE">COUR</span>
+            <input aria-label="COUR" class="w-12 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold" type="number" value="0"/>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1">
+            <span class="font-bold text-sm" title="DEXTÉRITÉ">DEX</span>
+            <input aria-label="DEX" class="w-12 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold" type="number" value="0"/>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1">
+            <span class="font-bold text-sm" title="SAUT">SAUT</span>
+            <input aria-label="SAUT" class="w-12 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold" type="number" value="0"/>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1">
+            <span class="font-bold text-sm" title="CORPS">CORPS</span>
+            <input aria-label="CORPS" class="w-12 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold" type="number" value="0"/>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1">
+            <span class="font-bold text-sm" title="POINTS DE VIE">PV</span>
+            <input aria-label="PV" class="w-12 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold" type="number" value="0"/>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1">
+            <span class="font-bold text-sm" title="VITESSE">VIT</span>
+            <input aria-label="VIT" class="w-12 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold" type="number" value="0"/>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1">
+            <span class="font-bold text-sm" title="ENDURANCE">END</span>
+            <input aria-label="END" class="w-12 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold" type="number" value="0"/>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1">
+            <span class="font-bold text-sm" title="EMPATHIE">EMP</span>
+            <input aria-label="EMP" class="w-12 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold" type="number" value="0"/>
+          </div>
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1">
+            <span class="font-bold text-sm" title="ENCOMBREMENT">ENC</span>
+            <input aria-label="ENC" class="w-12 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold" type="number" value="0"/>
+          </div>
+        </div>
+      </section>
+      <section class="bg-white/50 dark:bg-slate-900/50 p-4 border border-slate-300 dark:border-slate-700 rounded shadow-sm">
+        <h2 class="text-xl font-bold mb-4 border-b border-slate-300 dark:border-slate-700 pb-1 text-primary">Profession</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="text-xs uppercase font-bold opacity-60 block mb-1">CLASSE</label>
+            <input aria-label="Classe" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded text-sm p-2" placeholder="Sorceleur / Mage / Guerrier" type="text"/>
+          </div>
+          <div>
+            <label class="text-xs uppercase font-bold opacity-60 block mb-1">CAPACITÉ SPÉCIALE</label>
+            <input aria-label="Capacité spéciale" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded text-sm p-2 mb-2" placeholder="Nom de la capacité" type="text"/>
+            <textarea aria-label="Description capacité spéciale" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded text-xs p-2 h-20 resize-none" placeholder="Description de votre compétence professionnelle unique..."></textarea>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="lg:col-span-5 space-y-6">
+      <section class="bg-white/50 dark:bg-slate-900/50 p-4 border border-slate-300 dark:border-slate-700 rounded shadow-sm">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-primary mb-2">STATUT SOCIAL</h2>
+            <textarea aria-label="Statut social" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded text-xs p-2 h-16 resize-none" placeholder="Roturier, Noble, Paria..."></textarea>
+          </div>
+          <div>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-primary mb-2">PARTICULARITÉS</h2>
+            <textarea aria-label="Particularités" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded text-xs p-2 h-16 resize-none" placeholder="Cicatrices, taches de naissance, traits uniques..."></textarea>
+          </div>
+        </div>
+      </section>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white/50 dark:bg-slate-900/50 p-3 border border-slate-300 dark:border-slate-700 rounded">
+          <h3 class="text-sm font-bold uppercase border-b border-slate-200 dark:border-slate-800 mb-2 text-primary">INTELLIGENCE</h3>
+          <div class="space-y-1">
+            <div class="flex justify-between items-center text-xs"><span>Connaissance de la rue</span><input aria-label="Connaissance de la rue" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Savoir des monstres</span><input aria-label="Savoir des monstres" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Déduction</span><input aria-label="Déduction" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Éducation</span><input aria-label="Éducation" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Étiquette</span><input aria-label="Étiquette" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Survie en milieu sauvage</span><input aria-label="Survie en milieu sauvage" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+          </div>
+        </div>
+        <div class="bg-white/50 dark:bg-slate-900/50 p-3 border border-slate-300 dark:border-slate-700 rounded">
+          <h3 class="text-sm font-bold uppercase border-b border-slate-200 dark:border-slate-800 mb-2 text-primary">REFLEXES</h3>
+          <div class="space-y-1">
+            <div class="flex justify-between items-center text-xs"><span>Bagarre</span><input aria-label="Bagarre" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Bâton/Lance</span><input aria-label="Bâton ou Lance" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Escrime</span><input aria-label="Escrime" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Évasion</span><input aria-label="Évasion" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Petites lames</span><input aria-label="Petites lames" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Mêlée</span><input aria-label="Mêlée" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+          </div>
+        </div>
+        <div class="bg-white/50 dark:bg-slate-900/50 p-3 border border-slate-300 dark:border-slate-700 rounded">
+          <h3 class="text-sm font-bold uppercase border-b border-slate-200 dark:border-slate-800 mb-2 text-primary">DEXTÉRITÉ</h3>
+          <div class="space-y-1">
+            <div class="flex justify-between items-center text-xs"><span>Archerie</span><input aria-label="Archerie" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Athlétisme</span><input aria-label="Athlétisme" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Arbalète</span><input aria-label="Arbalète" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Discrétion</span><input aria-label="Discrétion" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+          </div>
+        </div>
+        <div class="bg-white/50 dark:bg-slate-900/50 p-3 border border-slate-300 dark:border-slate-700 rounded">
+          <h3 class="text-sm font-bold uppercase border-b border-slate-200 dark:border-slate-800 mb-2 text-primary">TECHNIQUE</h3>
+          <div class="space-y-1">
+            <div class="flex justify-between items-center text-xs"><span>Alchimie</span><input aria-label="Alchimie" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Artisanat</span><input aria-label="Artisanat" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Crochetage</span><input aria-label="Crochetage" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+            <div class="flex justify-between items-center text-xs"><span>Premiers soins</span><input aria-label="Premiers soins" class="w-8 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" type="number" value="0"/></div>
+          </div>
+        </div>
+      </div>
+      <section class="bg-white/50 dark:bg-slate-900/50 p-4 border border-slate-300 dark:border-slate-700 rounded shadow-sm">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-primary mb-3">APTITUDES PROFESSIONNELLES</h2>
+        <div class="grid grid-cols-1 gap-2">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">1</span>
+            <input aria-label="Aptitude professionnelle 1" class="flex-1 bg-transparent border-b border-slate-300 dark:border-slate-700 text-xs py-1" placeholder="..." type="text"/>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">2</span>
+            <input aria-label="Aptitude professionnelle 2" class="flex-1 bg-transparent border-b border-slate-300 dark:border-slate-700 text-xs py-1" placeholder="..." type="text"/>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">3</span>
+            <input aria-label="Aptitude professionnelle 3" class="flex-1 bg-transparent border-b border-slate-300 dark:border-slate-700 text-xs py-1" placeholder="..." type="text"/>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="lg:col-span-3 space-y-6">
+      <section style="aspect-ratio: 4 / 5;" class="bg-slate-200 dark:bg-slate-800 rounded border-2 border-dashed border-slate-400 dark:border-slate-600 flex flex-col items-center justify-center text-center p-6 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+        <button id="portrait-dropzone" type="button" aria-label="Charger un portrait" class="w-full h-full bg-transparent focus:outline-none">
+          <span class="material-symbols-outlined text-5xl opacity-20 mb-2">person_add</span>
+          <span class="text-xs uppercase font-bold opacity-40">Charger un portrait</span>
+        </button>
+      </section>
+      <section class="space-y-3">
+        <div class="bg-white/50 dark:bg-slate-900/50 p-3 border border-slate-300 dark:border-slate-700 rounded flex justify-between items-center">
+          <span class="text-sm font-bold uppercase text-primary">RÉPUTATION</span>
+          <input aria-label="Réputation" class="w-16 bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold text-center" type="number" value="0"/>
+        </div>
+        <div class="bg-white/50 dark:bg-slate-900/50 p-3 border border-slate-300 dark:border-slate-700 rounded flex justify-between items-center">
+          <span class="text-sm font-bold uppercase text-primary">POINTS D'EXP</span>
+          <input aria-label="Points d'expérience" class="w-16 bg-slate-100 dark:bg-slate-800 border-0 rounded font-bold text-center" type="number" value="0"/>
+        </div>
+      </section>
+      <section class="bg-white/50 dark:bg-slate-900/50 p-4 border border-slate-300 dark:border-slate-700 rounded shadow-sm">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-primary mb-3">ARME PRINCIPALE</h2>
+        <div class="space-y-2 text-xs">
+          <input aria-label="Nom de l'arme" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded p-1.5 mb-2 font-bold" placeholder="Nom de l'arme" type="text"/>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="flex justify-between items-center"><span>Précision</span><input aria-label="Précision arme" class="w-10 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" placeholder="+0" type="text"/></div>
+            <div class="flex justify-between items-center"><span>Fiabilité</span><input aria-label="Fiabilité arme" class="w-10 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" placeholder="10" type="text"/></div>
+            <div class="flex justify-between items-center"><span>Dégâts</span><input aria-label="Dégâts arme" class="w-10 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" placeholder="2d6" type="text"/></div>
+            <div class="flex justify-between items-center"><span>Portée</span><input aria-label="Portée arme" class="w-10 h-6 p-0 text-center bg-slate-100 dark:bg-slate-800 border-0 rounded" placeholder="Proche" type="text"/></div>
+          </div>
+        </div>
+      </section>
+      <section class="bg-white/50 dark:bg-slate-900/50 p-4 border border-slate-300 dark:border-slate-700 rounded shadow-sm">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-primary mb-2">ARMURE</h2>
+        <table class="w-full text-[10px]">
+          <thead>
+          <tr class="opacity-60 border-b border-slate-300 dark:border-slate-700">
+            <th class="text-left font-bold pb-1">Emplacement</th>
+            <th class="text-center font-bold pb-1">PA</th>
+            <th class="text-right font-bold pb-1">DÉGÂTS</th>
+          </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+          <tr><td class="py-1">Tête</td><td class="text-center"><input aria-label="PA Tête" class="w-6 h-4 bg-transparent border-0 text-center p-0" value="0"/></td><td class="text-right"><input aria-label="Dégâts Tête" class="w-6 h-4 bg-transparent border-0 text-right p-0" value="0"/></td></tr>
+          <tr><td class="py-1">Torse</td><td class="text-center"><input aria-label="PA Torse" class="w-6 h-4 bg-transparent border-0 text-center p-0" value="0"/></td><td class="text-right"><input aria-label="Dégâts Torse" class="w-6 h-4 bg-transparent border-0 text-right p-0" value="0"/></td></tr>
+          <tr><td class="py-1">Bras G.</td><td class="text-center"><input aria-label="PA Bras Gauche" class="w-6 h-4 bg-transparent border-0 text-center p-0" value="0"/></td><td class="text-right"><input aria-label="Dégâts Bras Gauche" class="w-6 h-4 bg-transparent border-0 text-right p-0" value="0"/></td></tr>
+          <tr><td class="py-1">Bras D.</td><td class="text-center"><input aria-label="PA Bras Droit" class="w-6 h-4 bg-transparent border-0 text-center p-0" value="0"/></td><td class="text-right"><input aria-label="Dégâts Bras Droit" class="w-6 h-4 bg-transparent border-0 text-right p-0" value="0"/></td></tr>
+          <tr><td class="py-1">Jambes</td><td class="text-center"><input aria-label="PA Jambes" class="w-6 h-4 bg-transparent border-0 text-center p-0" value="0"/></td><td class="text-right"><input aria-label="Dégâts Jambes" class="w-6 h-4 bg-transparent border-0 text-right p-0" value="0"/></td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+  <footer class="mt-8 space-y-4">
+    <section class="bg-white/50 dark:bg-slate-900/50 p-4 border border-slate-300 dark:border-slate-700 rounded shadow-sm">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-primary mb-3">NOTES DE L'AVENTURIER</h2>
+      <textarea aria-label="Notes de l'aventurier" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded text-sm p-4 h-32 focus:ring-1 focus:ring-primary" placeholder="Détails de la campagne, journal de quêtes et objectifs personnels..."></textarea>
     </section>
-  </body>
-</html>
+    <div class="text-center opacity-40 text-xs py-4">
+      <p>© 2024 Compagnon JDR Numérique. Conçu pour les aventuriers.</p>
+    </div>
+  </footer>
+</div>
 
+<script>
+  (function() {
+    // Toggle thème sombre (évitons les attributs inline)
+    const toggle = document.getElementById('toggle-dark');
+    if (toggle) toggle.addEventListener('click', () => document.documentElement.classList.toggle('dark'));
+
+    // Placeholder pour le bouton Enregistrer — à remplacer par l'appel Foundry approprié
+    const saveBtn = document.getElementById('save-character');
+    if (saveBtn) saveBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      // Trouver l'instance Actor dans le contexte du sheet
+      function findActorInstance() {
+        if (typeof e !== 'undefined') return e;
+        // Cherche l'app la plus proche (sheet) et récupère son id
+        const appRoot = saveBtn.closest('.app') || document.querySelector('.app');
+        if (appRoot) {
+          const id = appRoot.dataset.actorId || appRoot.dataset.entityId || appRoot.dataset.entityId;
+          if (id && window.game?.actors) return window.game.actors.get(id) || null;
+        }
+        // Fallback : personnage lié à l'utilisateur
+        if (window.game?.user?.character) return window.game.user.character;
+        return null;
+      }
+
+      const actorInstance = findActorInstance();
+      if (!actorInstance) {
+        if (window.ui && ui.notifications) ui.notifications.error('Impossible de trouver l\'acteur à mettre à jour. Ouvrez la fiche depuis Foundry.');
+        return;
+      }
+
+      // Récupérer les valeurs du formulaire
+      const getValue = (sel) => {
+        const el = document.querySelector(sel);
+        return el ? el.value : null;
+      };
+
+      const basics = {
+        race: getValue('#actor-race'),
+        gender: getValue('#actor-gender'),
+        age: getValue('#actor-age'),
+        origin: getValue('#actor-origin')
+      };
+
+      // Attributs principaux (aria-labels présents dans le template)
+      const attrKeys = ['INT','STUN','REF','COUR','DEX','SAUT','CORPS','PV','VIT','END','EMP','ENC'];
+      const attributes = {};
+      for (const key of attrKeys) {
+        const el = document.querySelector(`[aria-label="${key}"]`);
+        attributes[key.toLowerCase()] = el ? (el.type === 'number' ? Number(el.value) : el.value) : null;
+      }
+
+      // Compétences / aptitudes (récupération par aria-label sur les inputs listés)
+      const collectByLabels = (labels) => {
+        const out = {};
+        for (const label of labels) {
+          const el = document.querySelector(`[aria-label="${label}"]`);
+          if (el) out[label.replace(/\s+/g,'_').toLowerCase()] = el.value;
+        }
+        return out;
+      };
+
+      const profession = {
+        class: getValue('input[aria-label="Classe"]'),
+        specialName: getValue('input[aria-label="Capacité spéciale"]'),
+        specialDesc: getValue('textarea[aria-label="Description capacité spéciale"]')
+      };
+
+      const reputation = getValue('input[aria-label="Réputation"]');
+      const experience = getValue('input[aria-label="Points d\'expérience"]');
+      const notes = getValue('textarea[aria-label="Notes de l\'aventurier"]');
+
+      // Armes
+      const weapon = {
+        name: getValue('input[aria-label="Nom de l\'arme"]'),
+        precision: getValue('input[aria-label="Précision arme"]'),
+        reliability: getValue('input[aria-label="Fiabilité arme"]'),
+        damage: getValue('input[aria-label="Dégâts arme"]'),
+        range: getValue('input[aria-label="Portée arme"]')
+      };
+
+      // Armure
+      const armorSlots = ['Tête','Torse','Bras Gauche','Bras Droit','Jambes'];
+      const armor = {};
+      const armorMap = {
+        'Tête': 'tete',
+        'Torse': 'torse',
+        'Bras Gauche': 'bras_gauche',
+        'Bras Droit': 'bras_droit',
+        'Jambes': 'jambes'
+      };
+      // Les inputs d'armure ont des aria-labels définis plus haut
+      for (const key of ['PA Tête','Dégâts Tête','PA Torse','Dégâts Torse','PA Bras Gauche','Dégâts Bras Gauche','PA Bras Droit','Dégâts Bras Droit','PA Jambes','Dégâts Jambes']) {
+        const el = document.querySelector(`[aria-label="${key}"]`);
+        if (!el) continue;
+        // Décomposer la clé
+        const parts = key.split(' ');
+        const type = parts[0] === 'PA' ? 'pa' : 'degats';
+        const slot = key.replace(/^PA |^Dégâts /, '');
+        const slotKey = armorMap[slot] || slot.replace(/\s+/g,'_').toLowerCase();
+        armor[slotKey] = armor[slotKey] || {};
+        armor[slotKey][type] = el.value;
+      }
+
+      // Construire l'objet de mise à jour - nous plaçons les données personnalisées sous system.* pour éviter d'écraser d'autres champs
+      const updates = {
+        name: getValue('#actor-name') || actorInstance.name,
+        system: {
+          basics,
+          attributes,
+          profession,
+          reputation: reputation !== null ? Number(reputation) : null,
+          experience: experience !== null ? Number(experience) : null,
+          weapon,
+          armor,
+          notes
+        }
+      };
+
+      // Effectuer la mise à jour via l'API Foundry
+      try {
+        await actorInstance.update(updates);
+        if (window.ui && ui.notifications) ui.notifications.info('Fiche enregistrée.');
+      } catch (err) {
+        console.error(err);
+        if (window.ui && ui.notifications) ui.notifications.error('Erreur lors de la sauvegarde de la fiche. Voir la console pour détails.');
+      }
+    });
+
+    // Rendre la zone de portrait cliquable au clavier
+    const portrait = document.getElementById('portrait-dropzone');
+    if (portrait) {
+      portrait.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Enter' || ev.key === ' ') {
+          ev.preventDefault();
+          portrait.click();
+        }
+      });
+    }
+  })();
+</script>
+
+</body></html>

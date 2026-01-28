@@ -10,9 +10,7 @@
   "author": "VotreNom",
   "license": "MIT",
   "devDependencies": {
+    "@league-of-foundry-developers/foundry-vtt-types": "^13.340.1",
     "esbuild": "^0.27.2"
-  },
-  "dependencies": {
-    "@league-of-foundry-developers/foundry-vtt-types": "^13.346.0-beta.20250812191140"
   }
 }
