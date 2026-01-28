@@ -30,6 +30,20 @@ Hooks.once('init', async function() {
   CONFIG.Combat.initiative = { formula: "1d20", decimals: 2 };
 
   console.log('TRPG_TW_FR | Configuration initiale appliquée');
+
+  // Garantir qu'un type par défaut est défini si l'UI omet le champ 'type'
+  // Cela évite DataModelValidationError: type may not be undefined
+  Hooks.on('preCreateActor', (actor, createData, _options, _userId) => {
+    try {
+      if (!createData || !createData.type) {
+        createData = createData ?? {};
+        createData.type = 'character';
+      }
+    } catch (err) {
+      console.error('TRPG_TW_FR | Erreur dans preCreateActor hook', err);
+    }
+    return createData;
+  });
 });
 
 Hooks.once('ready', async function() {
