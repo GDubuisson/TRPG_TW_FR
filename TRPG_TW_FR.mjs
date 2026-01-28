@@ -18,6 +18,14 @@ Hooks.once('init', async function() {
   if (typeof TRPGActor !== 'undefined') CONFIG.Actor.documentClass = TRPGActor;
   if (typeof TRPGItem !== 'undefined') CONFIG.Item.documentClass = TRPGItem;
 
+  // Enregistrer les sheets personnalisées pour le type 'character'
+  if (typeof TRPGActorSheet !== 'undefined') {
+    Actors.registerSheet('trpg_tw_fr', TRPGActorSheet, { types: ['character'], makeDefault: true });
+  }
+  if (typeof TRPGItemSheet !== 'undefined') {
+    Items.registerSheet('trpg_tw_fr', TRPGItemSheet, { makeDefault: true });
+  }
+
   // Configuration minimale (exemples)
   CONFIG.Combat.initiative = { formula: "1d20", decimals: 2 };
 
